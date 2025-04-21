@@ -1,2 +1,2 @@
-### Ticket booking and management app
-# Development in progress
+# Ticket booking and management app
+#### Development in progress
