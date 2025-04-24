@@ -1,10 +1,9 @@
 import express, { Response, Request } from "express";
 import { body } from "express-validator";
 import jwt from "jsonwebtoken";
+import { validateRequest, BadRequestError } from "@ticket-system/common";
 
-import { validateRequest } from "../middlewares/validate-request";
 import { User } from "../models/user";
-import { BadRequestError } from "../errors/bad-request-error";
 import { Password } from "../services/password";
 
 const router = express.Router();
@@ -37,7 +36,7 @@ router.post(
         id: existingUser.id,
         email: existingUser.email,
       },
-      process.env.JWT_KEY!
+      process.env.JWT_KEY!,
     );
 
     req.session = {
@@ -45,7 +44,7 @@ router.post(
     };
 
     res.status(200).send(existingUser);
-  }
+  },
 );
 
 export { router as signinRouter };
