@@ -7,7 +7,7 @@ import { natsWrapper } from "../../nats-wrapper";
 it("returns a 404 if the provided id does not exist.", async () => {
   const id = new mongoose.Types.ObjectId().toHexString();
   await request(app)
-    .put(`/app/tickets${id}`)
+    .put(`/app/tickets/${id}`)
     .set("Cookie", global.signup())
     .send({
       title: "TVXQ!",
@@ -19,7 +19,7 @@ it("returns a 404 if the provided id does not exist.", async () => {
 it("returns a 401 if the user is not authenticated.", async () => {
   const id = new mongoose.Types.ObjectId().toHexString();
   await request(app)
-    .put(`/app/tickets${id}`)
+    .put(`/app/tickets/${id}`)
     .send({
       title: "TVXQ!",
       price: 100,
