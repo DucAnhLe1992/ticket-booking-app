@@ -141,4 +141,10 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+# Optional modules in the project
+nats-test
+
+# Optional IDE configuration
+.zed
+
 # End of https://www.toptal.com/developers/gitignore/api/node
