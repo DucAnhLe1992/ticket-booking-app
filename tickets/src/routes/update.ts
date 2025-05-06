@@ -5,6 +5,7 @@ import {
   requireAuth,
   NotFoundError,
   NotAuthorizedError,
+  BadRequestError,
 } from "@ticket-system/common";
 
 import { Ticket } from "../models/ticket";
@@ -28,6 +29,12 @@ router.put(
 
     if (!ticket) {
       throw new NotFoundError();
+    }
+
+    if (ticket.orderId) {
+      throw new BadRequestError(
+        "Ticket is already reserved and unable to edit.",
+      );
     }
 
     if (ticket.userId !== req.currentUser!.id) {
