@@ -4,13 +4,13 @@ import { Message } from "node-nats-streaming";
 import { queueGroupName } from "./queue-group-name";
 import { Ticket } from "../../models/ticket";
 import { TicketUpdatedPublisher } from "../publishers/ticket-updated-publisher";
-import mongoose from "mongoose";
 
-const byteToHex = (byte: number[]) => {
+const byteToHex = (byte: any) => {
   const key = "0123456789abcdef";
   let bytes = new Uint8Array(byte);
   let newHex = "";
   let currentChar = 0;
+
   // Go over each 8-bit byte
   for (let i = 0; i < bytes.length; i++) {
      // First 4-bits for first hex char
