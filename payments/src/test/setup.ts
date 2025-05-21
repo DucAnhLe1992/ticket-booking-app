@@ -3,10 +3,13 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 
 declare global {
-  var signup: () => string[];
+  var signup: (id?: string) => string[];
 }
 
 jest.mock("../nats-wrapper");
+
+process.env.STRIPE_KEY =
+  "sk_test_51QS3u0HrUngRHHMu96BOgcPtTp59EQ8eZm1kqEyHhYIDwdYX1AQfzufgpGDb4yfrLTgA9RRJtoyIb4XUChLR2NAl00119kujrn";
 
 let mongo: MongoMemoryServer;
 
@@ -37,9 +40,9 @@ afterAll(async () => {
   await mongoose.connection.close();
 });
 
-global.signup = () => {
+global.signup = (id?: string) => {
   const payload = {
-    id: new mongoose.Types.ObjectId().toHexString(),
+    id: id || new mongoose.Types.ObjectId().toHexString(),
     email: "test@mail.com",
   };
 
