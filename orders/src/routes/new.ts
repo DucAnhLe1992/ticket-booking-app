@@ -15,7 +15,7 @@ import { OrderCreatedPublisher } from "../events/publishers/order-created-publis
 import { natsWrapper } from "../nats-wrapper";
 
 // Minutes times 60 seconds per minute
-const EXPIRATION_WINDOW_SECONDS = 0.5 * 60;
+const EXPIRATION_WINDOW_SECONDS = 1 * 60;
 
 const router = express.Router();
 
