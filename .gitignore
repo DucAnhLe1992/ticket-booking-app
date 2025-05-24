@@ -144,6 +144,9 @@ dist
 # Optional modules in the project
 nats-test
 
+# Kubeconfig/yaml file
+ticket-booking-app_kubeconfig.yaml
+
 # Optional IDE configuration
 .zed
 
