@@ -1,0 +1,24 @@
+name: deploy-manifests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'infra/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup UpCloud CLI
+        uses: upcloudltd/upcloud-cli-action@main
+        with:
+          username: ${{ secrets.UPCLOUD_USERNAME }}
+          password: ${{ secrets.UPCLOUD_PASSWORD }}
+      - name: Setup kubeconfig
+        run: upctl kubernetes config 0de978bb-de63-4284-b1e4-6673808fb193
+      - name: Apply all deployments
+        run: kubectl apply -f infra/k8s
