@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'infra/**'
+      - "infra/**"
 
 jobs:
   build:
@@ -19,6 +19,6 @@ jobs:
           username: ${{ secrets.UPCLOUD_USERNAME }}
           password: ${{ secrets.UPCLOUD_PASSWORD }}
       - name: Setup kubeconfig
-        run: upctl kubernetes config 0de978bb-de63-4284-b1e4-6673808fb193
+        run: upctl kubernetes config 0de978bb-de63-4284-b1e4-6673808fb193 --write ticket-booking-app_kubeconfig.yaml && export KUBECONFIG=$(pwd)/ticket-booking-app_kubeconfig.yaml
       - name: Apply all deployments
         run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
