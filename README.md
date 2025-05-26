@@ -88,7 +88,7 @@ npm install
 
 **4. Configure environment variables:**
 
-Please navigate to `payments/src/test/setup.ts` and you can find raw values for JWT_KEY and STRIPE_KEY.
+Please navigate to `payments/src/test/setup.ts` and you can find raw values for `JWT_KEY` and `STRIPE_KEY`.
 > For this project, I wouldn't want to create a separate files for these secret keys, which act as environment variables.
 > The keys'values are exposed in the test files anyways, and I personally used kubectl to create secret keys, not using any files.
 > Of course things won't be so insecured in real-life projects, and there will be different approaches for secret key management.
@@ -104,13 +104,13 @@ kubectl config view
 // Skip this if you're running the correct context.
 kubectl config use-context [your-context-name-here]
 ```
-Now, when you already found out the values for JWT_KEY and STRIPE_KEY:
+Now, when you already found out the values for `JWT_KEY` and `STRIPE_KEY`:
 ```
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=<value-of-JWT_KEY>
 kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<value-of-STRIPE_KEY>
 ```
 
-Or, create a `.env` file in each service directory (e.g., `auth`, `tickets`, etc.) with the necessary environment variables JWT_KEY and STRIPE_KEY, values of which are mentioned above (not preferrable as I haven't tested it yet, but).
+Or, create a `.env` file in each service directory (e.g., `auth`, `tickets`, etc.) with the necessary environment variables `JWT_KEY` and `STRIPE_KEY`, values of which are mentioned above (not preferrable as I haven't tested it yet, but).
 
 **5. Run the application with Skaffold:**
 
@@ -120,7 +120,7 @@ skaffold dev
 
 **6. Access the application:**
 
-Once all services are up and running, access the frontend at https://ticketing.io. Ensure that your `/etc/hosts` file maps `ticketing.io` to your Kubernetes IP.
+Once all services are up and running, access the frontend at `https://ticketing.io`. Ensure that your `/etc/hosts` file maps `ticketing.io` to your Kubernetes IP.
 
 ### Setup Instructions and Implementation from Cloud Deployment
 
