@@ -28,7 +28,9 @@ The system is composed of the following services:
 - **Payments Service**: Processes payments and confirms transactions.
 - **Expiration Service**: Monitors and expires unpaid orders after a set duration.
 - **Client**: A simple Next.js frontend for user interaction.
-- **Common**: A shared npm package containing reusable code (e.g., middlewares, error handling, event definitions).
+- [**Common**](https://www.npmjs.com/package/@ticket-system/common): A shared npm package containing reusable code (e.g., middlewares, error handling, event definitions).
+
+More about this `common` package can be found at `https://www.npmjs.com/package/@ticket-system/common`.
 
 Services communicate via [NATS Streaming](https://docs.nats.io/nats-streaming-concepts/intro), enabling event-driven interactions and ensuring eventual consistency across the system.
 
@@ -50,7 +52,7 @@ Services communicate via [NATS Streaming](https://docs.nats.io/nats-streaming-co
 
 - **Event-Driven Architecture**: Services publish and subscribe to events, decoupling business logic and improving scalability.
 - **Optimistic Concurrency Control (OCC)**: Ensures data consistency during concurrent updates.
-- **Custom NPM Package**: Shared logic and event definitions are abstracted into a reusable package.
+- [**Custom NPM Package**](https://www.npmjs.com/package/@ticket-system/common): Shared logic and event definitions are abstracted into a reusable package.
 - **Kubernetes-Ready**: Fully containerized and orchestrated for local or cloud deployment.
 - **Developer-Friendly**: Hot reloading, automated builds, and streamlined local development with Skaffold.
 
