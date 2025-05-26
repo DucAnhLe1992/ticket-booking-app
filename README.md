@@ -77,8 +77,10 @@ cd ticket-booking-app
 ```
 
 **2. Install dependencies:**
+Please go through all directories as listed: `auth`, `client`, `expiration`, `orders`, `payments`, and `tickets`. No need to go through `common` and `infra`, as the former is already an npm package itself, used for supporting other services, and the latter is just a combination of configurations and manifests.
 
 ```
+cd [service-name]
 npm install
 ```
 
