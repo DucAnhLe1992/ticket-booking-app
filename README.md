@@ -139,7 +139,32 @@ ticket-booking-app/
 
 ## 🛠️ API:
 
-To be updated really soon.
+Remember to add domain `https://ticketing.io/` leading each API.
+
+#### 🧑 Auth Service
+Handles user authentication and authorization.
+- `POST /api/users/signup` – Register a new user
+- `POST /api/users/signin` – Authenticate an existing user
+- `POST /api/users/signout` – Sign out the current user
+- `GET /api/users/currentuser` – Retrieve information about the currently authenticated user
+
+#### 🎫 Tickets Service
+Manages ticket creation, updating, and retrieval.
+- `GET /api/tickets` – Retrieve a list of all tickets
+- `GET /api/tickets/:id` – Retrieve details of a specific ticket
+- `POST /api/tickets` – Create a new ticket
+- `PUT /api/tickets/:id` – Update an existing ticket
+
+#### 📦 Orders Service
+Handles order creation, cancellation, and retrieval.
+- `GET /api/orders` – Retrieve a list of orders for the current user
+- `GET /api/orders/:id` – Retrieve details of a specific order
+- `POST /api/orders` – Create a new order
+- `DELETE /api/orders/:id` – Cancel an existing order
+
+#### 💳 Payments Service
+Processes payments for orders.
+- `POST /api/payments` – Submit a payment for an order
 
 ---
 
