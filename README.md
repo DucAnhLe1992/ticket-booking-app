@@ -88,9 +88,29 @@ I personally do not use Minikube. I am quite happy with Docker Desktop and its i
 
 **4. Configure environment variables:**
 
-Create secrets for the services (will be updated later, you might temporarily stop here and wait until I update about this part).
+Please navigate to `payments/src/test/setup.ts` and you can find raw values for JWT_KEY and STRIPE_KEY.
+> For this project, I wouldn't want to create a separate files for these secret keys, which act as environment variables.
+> The keys'values are exposed in the test files anyways, and I personally used kubectl to create secret keys, not using any files.
+> Of course things won't be so insecured in real-life projects, and there will be different approaches for secret key management.
+> **tl;dr:** I'm a bit lazy.
 
-Or, create a `.env` file in each service directory (e.g., `auth`, `tickets`, etc.) with the necessary environment variables. Refer to each service's `README.md` or configuration files for required variables. (Each service's `README.md` file will be updated later).
+Create secrets for the services as followed:
+```
+// Just to make sure that you're using the correct context,
+// Ideally, the context name will be most likely docker-desktop
+kubectl config view
+```
+```
+// Skip this if you're running the correct context.
+kubectl config use-context [your-context-name-here]
+```
+Now, when you already found out the values for JWT_KEY and STRIPE_KEY:
+```
+kubectl create secret generic jwt-secret --from-literal=JWT_KEY=<value-of-JWT_KEY>
+kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<value-of-STRIPE_KEY>
+```
+
+Or, create a `.env` file in each service directory (e.g., `auth`, `tickets`, etc.) with the necessary environment variables JWT_KEY and STRIPE_KEY, values of which are mentioned above (not preferrable as I haven't tested it yet, but).
 
 **5. Run the application with Skaffold:**
 
@@ -104,7 +124,7 @@ Once all services are up and running, access the frontend at https://ticketing.i
 
 ### Setup Instructions and Implementation from Cloud Deployment
 
-Will be implemented soon.
+Will be implemented sometime soon.
 
 > **Translation:** When I have enough money for a cloud service to deploy my entire project cluster.
 
