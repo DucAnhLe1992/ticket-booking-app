@@ -89,9 +89,13 @@ npm install
 **4. Configure environment variables:**
 
 Please navigate to `payments/src/test/setup.ts` and you can find raw values for `JWT_KEY` and `STRIPE_KEY`.
+
 > For this project, I wouldn't want to create a separate files for these secret keys, which act as environment variables.
+>
 > The keys'values are exposed in the test files anyways, and I personally used kubectl to create secret keys, not using any files.
+> 
 > Of course things won't be so insecured in real-life projects, and there will be different approaches for secret key management.
+> 
 > **tl;dr:** I'm a bit lazy.
 
 Create secrets for the services as followed:
