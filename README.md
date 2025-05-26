@@ -150,6 +150,7 @@ This project is licensed under the MIT License.
 
 ## ✍️ Author
 **Duc Anh Le**
+
 GitHub: [@DucAnhLe1992](https://github.com/DucAnhLe1992)  
 LinkedIn: [linkedin.com/in/ducanhle92](https://linkedin.com/in/ducanhle92)
 
