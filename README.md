@@ -80,7 +80,8 @@ cd ticket-booking-app
 Please go through all directories as listed: `auth`, `client`, `expiration`, `orders`, `payments`, and `tickets`. No need to go through `common` and `infra`, as the former is already an npm package itself, used for supporting other services, and the latter is just a combination of configurations and manifests.
 
 ```
-cd [service-name]
+// Do this 6 times, presumably you're at root folder of the project whenever you start to do as followed:
+cd [directory-name]
 npm install
 ```
 
