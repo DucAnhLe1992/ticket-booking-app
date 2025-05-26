@@ -84,7 +84,7 @@ npm install
 
 **3. Start Kubernetes and make sure Ingress is enabled:**
 
-I personally do not use Minikube. I am quite happy with Docker Desktop and its integrated Kubernetes. Please configure your way around to get the necessary things up and running, in this case, your local Kubernetes cluster and Ingress.
+> I personally do not use Minikube. I am quite happy with Docker Desktop and its integrated Kubernetes. Please configure your way around to get the necessary things up and running, in this case, your local Kubernetes cluster and Ingress.
 
 **4. Configure environment variables:**
 
