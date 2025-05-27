@@ -67,7 +67,7 @@ Services communicate via [NATS Streaming](https://docs.nats.io/nats-streaming-co
 - [Kubernetes](https://kubernetes.io/docs/home/)
 - [Node.js](https://nodejs.org/)
 
-### Local Setup Instructions
+### I. Local Setup Instructions
 
 **1. Clone the repository:**
 
@@ -80,7 +80,8 @@ cd ticket-booking-app
 Please go through all directories as listed: `auth`, `client`, `expiration`, `orders`, `payments`, and `tickets`. No need to go through `common` and `infra`, as the former is already an npm package itself, used for supporting other services, and the latter is just a combination of configurations and manifests.
 
 ```
-// Do this 6 times, presumably you're at root folder of the project whenever you start to do as followed:
+// Do this 6 times, presumably you're at root folder of the project
+// whenever you start to do as followed:
 cd [directory-name]
 npm install
 ```
@@ -101,6 +102,7 @@ Please navigate to `payments/src/test/setup.ts` and you can find raw values for 
 > For this project, I wouldn't want to create a separate files for these secret keys, which act as environment variables.
 > The keys' values are exposed in the test files anyways, and I personally used kubectl to create secret keys, not using any files.
 > Of course things won't be so insecured in real-life projects, and there will be different approaches for secret key management.
+>
 > **tl;dr:** I'm a bit lazy.
 
 Create secrets for the services as followed:
@@ -119,7 +121,7 @@ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=<value-of-JWT_KE
 kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<value-of-STRIPE_KEY>
 ```
 
-Or, create a `.env` file in each service directory (e.g., `auth`, `tickets`, etc.) with the necessary environment variables `JWT_KEY` and `STRIPE_KEY`, values of which are mentioned above (not preferrable as I haven't tested it yet, but).
+Or, create a `.env` file in each service directory (e.g., `auth`, `tickets`, etc.) with the necessary environment variables `JWT_KEY` and `STRIPE_KEY`, values of which are mentioned above (not preferrable as I haven't tested it yet, but i don't think there might be any issues).
 
 **5. Run the application with Skaffold:**
 
@@ -129,9 +131,9 @@ skaffold dev
 
 **6. Access the application:**
 
-Once all services are up and running, access the frontend at `https://ticketing.io`. Ensure that your `/etc/hosts` file maps `ticketing.io` to your Kubernetes IP.
+Once all services are up and running, access the frontend at `https://ticketing.io`. Ensure that your `/etc/hosts` file maps `ticketing.io` to your Kubernetes IP, or most simply, just your `localhost` address.
 
-### Setup Instructions and Implementation from Cloud Deployment
+### II. Setup Instructions and Implementation from Cloud Deployment
 
 Will be implemented sometime soon.
 
