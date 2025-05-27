@@ -87,7 +87,7 @@ npm install
 
 **3. Start Kubernetes and make sure Ingress is enabled:**
 
-==Optional:== If you need to apply configuration to your cluster (or if you don't know if you already have one just yet):
+**Optional:** If you need to apply configuration to your cluster (or if you don't know if you already have one just yet):
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
 ```
@@ -182,40 +182,60 @@ Except `POST /api/users/signin`, `POST /api/users/signout`, `POST /api/users/sig
 Handles user authentication and authorization.
 <details>
 <summary><code>POST /api/users/signup</code> – Register a new user</summary>
-```
+<code>
 {
     "request": {
         "body": {
-            "email": "Must be of valid email address format.",
-            "password": "From 5 to 20 characters."
+            "email": "Must be of valid email address format",
+            "password": "From 5 to 20 characters"
         }
     },
     "response": {
-        "email": "The registered email address.",
-        "id": "Uniquely assigned user ID."
+        "email": "The registered email address",
+        "id": "Uniquely assigned user ID"
     }
 }
-```
+</code>
 </details>
 <details>
 <summary><code>POST /api/users/signin</code> – Authenticate an existing user</summary>
-```
+<code>
 {
     "request": {
         "body": {
-            "email": "Must be a correct email of course.",
+            "email": "Must be a correct email of course",
             "password": "Same."
         }
     },
     "response": {
-        "email": "The logged in email address.",
+        "email": "The logged in email address",
         "id": "User ID."
     }
 }
-```
+</code>
 </details>
-- `POST /api/users/signout` – Sign out the current user
-- `GET /api/users/currentuser` – Retrieve information about the currently authenticated user
+<details>
+<summary><code>POST /api/users/signout</code> – Sign out the current user</summary>
+<code>
+{
+    "response": {}
+}
+</code>
+</details>
+<details>
+<summary><code>GET /api/users/currentuser</code> – Retrieve information about the currently authenticated user</summary>
+<code>
+{
+    "response": {
+        "currentUser": {
+            "id": "user ID",
+            "email": "user's email address",
+            "iat": "the IssuedAt property of JWT"
+        }
+    }
+}
+</code>
+</details>
 
 #### 🎫 Tickets Service
 Manages ticket creation, updating, and retrieval.
