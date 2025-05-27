@@ -146,7 +146,7 @@ Will be implemented sometime soon.
 Each service includes unit and integration tests using Jest. To run tests for a specific service:
 ```
 cd [service-name]
-npm test
+npm run test
 ```
 Replace `[service-name]` with the directory name of the service you wish to test (e.g., `orders`, `payments`).
 
