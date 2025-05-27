@@ -87,6 +87,11 @@ npm install
 
 **3. Start Kubernetes and make sure Ingress is enabled:**
 
+==Optional:== If you need to apply configuration to your cluster (or if you don't know if you already have one just yet):
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
+```
+
 > I personally do not use Minikube. I am quite happy with Docker Desktop and its integrated Kubernetes. Please configure your way around to get the necessary things up and running, in this case, your local Kubernetes cluster and Ingress.
 
 **4. Configure environment variables:**
@@ -96,9 +101,9 @@ Please navigate to `payments/src/test/setup.ts` and you can find raw values for 
 > For this project, I wouldn't want to create a separate files for these secret keys, which act as environment variables.
 >
 > The keys'values are exposed in the test files anyways, and I personally used kubectl to create secret keys, not using any files.
-> 
+>
 > Of course things won't be so insecured in real-life projects, and there will be different approaches for secret key management.
-> 
+>
 > **tl;dr:** I'm a bit lazy.
 
 Create secrets for the services as followed:
@@ -169,11 +174,46 @@ ticket-booking-app/
 ## 🛠️ API:
 
 Remember to add domain `https://ticketing.io/` leading each API.
+Except `POST /api/users/signin`, `POST /api/users/signout`, `POST /api/users/signup`, all other routes require user's cookie, which can be acquired from `POST /api/users/signin` or `POST /api/users/signup`.
+
+> Will be updated along the way.
 
 #### 🧑 Auth Service
 Handles user authentication and authorization.
-- `POST /api/users/signup` – Register a new user
-- `POST /api/users/signin` – Authenticate an existing user
+<details>
+<summary><code>POST /api/users/signup</code> – Register a new user</summary>
+```
+{
+    "request": {
+        "body": {
+            "email": "Must be of valid email address format.",
+            "password": "From 5 to 20 characters."
+        }
+    },
+    "response": {
+        "email": "The registered email address.",
+        "id": "Uniquely assigned user ID."
+    }
+}
+```
+</details>
+<details>
+<summary><code>POST /api/users/signin</code> – Authenticate an existing user</summary>
+```
+{
+    "request": {
+        "body": {
+            "email": "Must be a correct email of course.",
+            "password": "Same."
+        }
+    },
+    "response": {
+        "email": "The logged in email address.",
+        "id": "User ID."
+    }
+}
+```
+</details>
 - `POST /api/users/signout` – Sign out the current user
 - `GET /api/users/currentuser` – Retrieve information about the currently authenticated user
 
@@ -205,7 +245,7 @@ This project is licensed under the MIT License.
 ## ✍️ Author
 **Duc Anh Le**
 
-GitHub: [@DucAnhLe1992](https://github.com/DucAnhLe1992)  
+GitHub: [@DucAnhLe1992](https://github.com/DucAnhLe1992)
 LinkedIn: [linkedin.com/in/ducanhle92](https://linkedin.com/in/ducanhle92)
 
 ---
