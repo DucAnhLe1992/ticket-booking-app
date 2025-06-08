@@ -260,10 +260,10 @@ Manages ticket creation, updating, and retrieval.
 
 <details>
     <summary>
-        <code>GET /api/tickets – Retrieve a list of all tickets</code>
+        <code>GET /api/tickets</code> – Retrieve a list of all tickets
     </summary>
     <code>Update pending ...</code>
-</details
+</details>
 
 <details>
     <summary>
