@@ -89,6 +89,7 @@ npm install
 **3. Start Kubernetes and make sure Ingress is enabled:**
 
 **Optional:** If you need to apply configuration to your cluster (or if you don't know if you already have one just yet):
+
 ```
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
 ```
@@ -106,16 +107,20 @@ Please navigate to `payments/src/test/setup.ts` and you can find raw values for 
 > **tl;dr:** I'm a bit lazy.
 
 Create secrets for the services as followed:
+
 ```
 // Just to make sure that you're using the correct context,
 // Ideally, the context name will be most likely docker-desktop
 kubectl config view
 ```
+
 ```
 // Skip this if you're running the correct context.
 kubectl config use-context [your-context-name-here]
 ```
+
 Now, when you already found out the values for `JWT_KEY` and `STRIPE_KEY`:
+
 ```
 kubectl create secret generic jwt-secret --from-literal=JWT_KEY=<value-of-JWT_KEY>
 kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<value-of-STRIPE_KEY>
@@ -144,10 +149,12 @@ Will be implemented sometime soon.
 ## 🧪 Testing
 
 Each service includes unit and integration tests using Jest. To run tests for a specific service:
+
 ```
 cd [service-name]
 npm run test
 ```
+
 Replace `[service-name]` with the directory name of the service you wish to test (e.g., `orders`, `payments`).
 
 ---
@@ -178,90 +185,160 @@ Except `POST /api/users/signin`, `POST /api/users/signout`, `POST /api/users/sig
 > Will be updated along the way.
 
 #### 🧑 Auth Service
+
 Handles user authentication and authorization.
+
 <details>
-<summary><code>POST /api/users/signup</code> – Register a new user</summary>
-<code>
-{
-    "request": {
-        "body": {
-            "email": "Must be of valid email address format",
-            "password": "From 5 to 20 characters"
+    <summary>
+        <code>POST /api/users/signup</code> – Register a new user
+    </summary>
+    <code>
+        {
+            "request": {
+                "body": {
+                    "email": "Must be of valid email address format",
+                    "password": "From 5 to 20 characters"
+                }
+            },
+            "response": {
+                "email": "The registered email address",
+                "id": "Uniquely assigned user ID"
+            }
         }
-    },
-    "response": {
-        "email": "The registered email address",
-        "id": "Uniquely assigned user ID"
-    }
-}
-</code>
+    </code>
 </details>
+
 <details>
-<summary><code>POST /api/users/signin</code> – Authenticate an existing user</summary>
-<code>
-{
-    "request": {
-        "body": {
-            "email": "Must be a correct email of course",
-            "password": "Same."
+    <summary>
+        <code>POST /api/users/signin</code> – Authenticate an existing user
+    </summary>
+    <code>
+        {
+            "request": {
+                "body": {
+                    "email": "Must be a correct email of course",
+                    "password": "Same."
+                }
+            },
+            "response": {
+                "email": "The logged in email address",
+                "id": "User ID."
+            }
         }
-    },
-    "response": {
-        "email": "The logged in email address",
-        "id": "User ID."
-    }
-}
-</code>
+    </code>
 </details>
+
 <details>
-<summary><code>POST /api/users/signout</code> – Sign out the current user</summary>
-<code>
-{
-    "response": {}
-}
-</code>
-</details>
-<details>
-<summary><code>GET /api/users/currentuser</code> – Retrieve information about the currently authenticated user</summary>
-<code>
-{
-    "response": {
-        "currentUser": {
-            "id": "user ID",
-            "email": "user's email address",
-            "iat": "the IssuedAt property of JWT"
+    <summary><code>POST /api/users/signout</code> – Sign out the current user</summary>
+    <code>
+        {
+            "response": {}
         }
-    }
-}
-</code>
+    </code>
+</details>
+
+<details>
+    <summary>
+        <code>GET /api/users/currentuser</code> – Retrieve information about the currently authenticated user
+    </summary>
+    <code>
+        {
+            "response": {
+                "currentUser": {
+                    "id": "user ID",
+                    "email": "user's email address",
+                    "iat": "the IssuedAt property of JWT"
+                }
+            }
+        }
+    </code>
 </details>
 
 #### 🎫 Tickets Service
+
 Manages ticket creation, updating, and retrieval.
-- `GET /api/tickets` – Retrieve a list of all tickets
-- `GET /api/tickets/:id` – Retrieve details of a specific ticket
-- `POST /api/tickets` – Create a new ticket
-- `PUT /api/tickets/:id` – Update an existing ticket
+
+<details>
+    <summary>
+        <code>GET /api/tickets – Retrieve a list of all tickets</code>
+    </summary>
+    <code>Update pending ...</code>
+</details
+
+<details>
+    <summary>
+        <code>GET /api/tickets/:id</code> – Retrieve details of a specific
+    </summary>
+    <code>Update pending ...</code>
+</details>
+
+<details>
+    <summary>
+        <code>POST /api/tickets</code> – Create a new ticket
+    </summary>
+    <code>Update pending ...</code>
+</details>
+
+<details>
+    <summary>
+        <code>PUT /api/tickets/:id</code> – Update an existing ticket
+    </summary>
+    <code>Update pending ...</code>
+</details>
 
 #### 📦 Orders Service
+
 Handles order creation, cancellation, and retrieval.
-- `GET /api/orders` – Retrieve a list of orders for the current user
-- `GET /api/orders/:id` – Retrieve details of a specific order
-- `POST /api/orders` – Create a new order
-- `DELETE /api/orders/:id` – Cancel an existing order
+
+<details>
+    <summary>
+        <code>GET /api/orders</code> – Retrieve a list of orders for the current user
+    </summary>
+    <code>Update pending ...</code>
+</details>
+
+<details>
+    <summary>
+        <code>GET /api/orders/:id</code> – Retrieve details of a specific order
+    </summary>
+    <code>Update pending ...</code>
+</details>
+
+<details>
+    <summary>
+        <code>POST /api/orders</code> – Create a new order
+    </summary>
+    <code>Update pending ...</code>
+</details>
+
+<details>
+    <summary>
+        <code>DELETE /api/orders/:id</code> – Cancel an existing order
+    </summary>
+    <code>Update pending ...</code>
+</details>
 
 #### 💳 Payments Service
+
 Processes payments for orders.
-- `POST /api/payments` – Submit a payment for an order
+
+<details>
+    <summary>
+        <code>POST /api/payments</code> – Submit a payment for an order
+    </summary>
+    <code>Update pending ...</code>
+</details>
 
 ---
 
 ## 📄 License
+
 This project is licensed under the MIT License.
 
 ---
 
 ## ✍️ Author
+
 **Duc Anh Le**
 
 GitHub: [@DucAnhLe1992](https://github.com/DucAnhLe1992)
@@ -271,4 +348,5 @@ LinkedIn: [linkedin.com/in/ducanhle92](https://linkedin.com/in/ducanhle92)
 ---
 
 ## 🙌 Acknowledgments
-* [Stephen Grider](https://x.com/ste_grider)
+
+- [Stephen Grider](https://x.com/ste_grider)
