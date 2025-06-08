@@ -13,12 +13,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Setup UpCloud CLI
-        uses: upcloudltd/upcloud-cli-action@main
+      - name: Setup DigitalOcean CLI
+        uses: digitalocean/action-doctl@v2
         with:
-          username: ${{ secrets.UPCLOUD_USERNAME }}
-          password: ${{ secrets.UPCLOUD_PASSWORD }}
+          token: ${{ secrets.DIGITALOCEAN_TOKEN }}
       - name: Setup kubeconfig
-        run: upctl kubernetes config 0de978bb-de63-4284-b1e4-6673808fb193 --write ticket-booking-app_kubeconfig.yaml && export KUBECONFIG=$(pwd)/ticket-booking-app_kubeconfig.yaml
+        run: doctl kubernetes cluster kubeconfig save ticket-system
       - name: Apply all deployments
         run: kubectl apply -f infra/k8s && kubectl apply -f infra/k8s-prod
