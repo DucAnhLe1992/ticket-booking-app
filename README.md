@@ -262,28 +262,28 @@ Manages ticket creation, updating, and retrieval.
     <summary>
         <code>GET /api/tickets</code> – Retrieve a list of all tickets
     </summary>
-    <code>Update pending ...</code>
+    <code>In progress ...</code>
 </details>
 
 <details>
     <summary>
         <code>GET /api/tickets/:id</code> – Retrieve details of a specific
     </summary>
-    <code>Update pending ...</code>
+    <code>In progress ...</code>
 </details>
 
 <details>
     <summary>
         <code>POST /api/tickets</code> – Create a new ticket
     </summary>
-    <code>Update pending ...</code>
+    <code>In progress ...</code>
 </details>
 
 <details>
     <summary>
         <code>PUT /api/tickets/:id</code> – Update an existing ticket
     </summary>
-    <code>Update pending ...</code>
+    <code>In progress ...</code>
 </details>
 
 #### 📦 Orders Service
@@ -294,28 +294,28 @@ Handles order creation, cancellation, and retrieval.
     <summary>
         <code>GET /api/orders</code> – Retrieve a list of orders for the current user
     </summary>
-    <code>Update pending ...</code>
+    <code>In progress ...</code>
 </details>
 
 <details>
     <summary>
         <code>GET /api/orders/:id</code> – Retrieve details of a specific order
     </summary>
-    <code>Update pending ...</code>
+    <code>In progress ...</code>
 </details>
 
 <details>
     <summary>
         <code>POST /api/orders</code> – Create a new order
     </summary>
-    <code>Update pending ...</code>
+    <code>In progress ...</code>
 </details>
 
 <details>
     <summary>
         <code>DELETE /api/orders/:id</code> – Cancel an existing order
     </summary>
-    <code>Update pending ...</code>
+    <code>In progress ...</code>
 </details>
 
 #### 💳 Payments Service
@@ -326,7 +326,7 @@ Processes payments for orders.
     <summary>
         <code>POST /api/payments</code> – Submit a payment for an order
     </summary>
-    <code>Update pending ...</code>
+    <code>In progress ...</code>
 </details>
 
 ---
