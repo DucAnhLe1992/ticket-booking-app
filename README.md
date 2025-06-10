@@ -140,9 +140,13 @@ Once all services are up and running, access the frontend at `https://ticketing.
 
 ### II. Setup Instructions and Implementation from Cloud Deployment
 
-Will be implemented sometime soon.
+~~Will be implemented sometime soon.~~
 
-> **Translation:** When I have enough money for a cloud service to deploy my entire project cluster.
+> ~~**Translation:** When I have enough money for a cloud service to deploy my entire project cluster.~~
+
+Finally I did it! Please head to `http://www.ticket-system.xyz/` to explore my deployment of the entire app. It might require some refreshes to fully and correctly display. Happy testing!
+
+> I don't know for how long I can maintain it. Please bear with me.
 
 ---
 
