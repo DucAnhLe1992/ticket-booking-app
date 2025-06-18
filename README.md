@@ -181,6 +181,84 @@ ticket-booking-app/
 
 ---
 
+## 📜 Diagram
+
+```mermaid
+flowchart TD
+    subgraph "Kubernetes Cluster"
+        direction TB
+        Ingress["Ingress Gateway"]:::infra
+        AuthS["Auth Service"]:::service
+        AuthDB[(MongoDB)]:::db
+        TicketsS["Tickets Service"]:::service
+        TicketsDB[(MongoDB)]:::db
+        OrdersS["Orders Service"]:::service
+        OrdersDB[(MongoDB)]:::db
+        PaymentsS["Payments Service"]:::service
+        PaymentsDB[(MongoDB)]:::db
+        ExpirationS["Expiration Service"]:::service
+        ExpirationDB[(MongoDB)]:::db
+        Redis[(Redis)]:::db
+        NATS["NATS Streaming Cluster"]:::messagebus
+    end
+
+    Client["Next.js Client"]:::frontend
+    Stripe["Stripe API"]:::external
+    subgraph "CI/CD Pipeline"
+        direction TB
+        GH["GitHub Actions"]:::ci
+        Docker["Docker Images"]:::ci
+        Skaffold["Skaffold"]:::ci
+        GH --> Docker --> Skaffold --> Ingress
+    end
+
+    Client -->|"HTTP Calls"| Ingress
+    Ingress --> AuthS
+    Ingress --> TicketsS
+    Ingress --> OrdersS
+    Ingress --> PaymentsS
+
+    AuthS --> AuthDB
+    TicketsS --> TicketsDB
+    OrdersS --> OrdersDB
+    PaymentsS --> PaymentsDB
+    ExpirationS --> ExpirationDB
+    ExpirationS --> Redis
+
+    AuthS ---|pub/sub| NATS
+    TicketsS ---|pub/sub| NATS
+    OrdersS ---|pub/sub| NATS
+    PaymentsS ---|pub/sub| NATS
+    ExpirationS ---|pub/sub| NATS
+
+    PaymentsS -->|"Stripe API"| Stripe
+
+    classDef service fill:#ADD8E6,stroke:#000,stroke-width:1px
+    classDef db fill:#90EE90,stroke:#000,stroke-width:1px,shape:cylinder
+    classDef messagebus fill:#FFA500,stroke:#000,stroke-width:1px
+    classDef external fill:#F08080,stroke:#000,stroke-width:1px,shape:cloud
+    classDef infra fill:#DDA0DD,stroke:#000,stroke-width:2px
+    classDef frontend fill:#87CEFA,stroke:#000,stroke-width:1px
+    classDef ci fill:#D3D3D3,stroke:#000,stroke-width:1px
+
+    click Client "https://github.com/ducanhle1992/ticket-booking-app/tree/main/client/"
+    click AuthS "https://github.com/ducanhle1992/ticket-booking-app/blob/main/auth/src/index.ts"
+    click AuthDB "https://github.com/ducanhle1992/ticket-booking-app/blob/main/infra/k8s/auth-mongo-depl.yaml"
+    click TicketsS "https://github.com/ducanhle1992/ticket-booking-app/blob/main/tickets/src/index.ts"
+    click TicketsDB "https://github.com/ducanhle1992/ticket-booking-app/blob/main/infra/k8s/tickets-mongo-depl.yaml"
+    click OrdersS "https://github.com/ducanhle1992/ticket-booking-app/blob/main/orders/src/index.ts"
+    click OrdersDB "https://github.com/ducanhle1992/ticket-booking-app/blob/main/infra/k8s/orders-mongo-depl.yaml"
+    click PaymentsS "https://github.com/ducanhle1992/ticket-booking-app/blob/main/payments/src/stripe.ts"
+    click PaymentsDB "https://github.com/ducanhle1992/ticket-booking-app/blob/main/infra/k8s/payments-mongo-depl.yaml"
+    click ExpirationS "https://github.com/ducanhle1992/ticket-booking-app/blob/main/expiration/src/index.ts"
+    click Redis "https://github.com/ducanhle1992/ticket-booking-app/blob/main/infra/k8s/expiration-redis-depl.yaml"
+    click NATS "https://github.com/ducanhle1992/ticket-booking-app/blob/main/infra/k8s/nats-depl.yaml"
+    click GH "https://github.com/ducanhle1992/ticket-booking-app/tree/main/.github/workflows/"
+    click Skaffold "https://github.com/ducanhle1992/ticket-booking-app/blob/main/skaffold.yaml"
+```
+
+---
+
 ## 🛠️ API:
 
 Remember to add domain `https://ticketing.io/` leading each API.
