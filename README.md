@@ -197,7 +197,6 @@ flowchart TD
         PaymentsS["Payments Service"]:::service
         PaymentsDB[(MongoDB)]:::db
         ExpirationS["Expiration Service"]:::service
-        ExpirationDB[(MongoDB)]:::db
         Redis[(Redis)]:::db
         NATS["NATS Streaming Cluster"]:::messagebus
     end
@@ -222,7 +221,6 @@ flowchart TD
     TicketsS --> TicketsDB
     OrdersS --> OrdersDB
     PaymentsS --> PaymentsDB
-    ExpirationS --> ExpirationDB
     ExpirationS --> Redis
 
     AuthS ---|pub/sub| NATS
