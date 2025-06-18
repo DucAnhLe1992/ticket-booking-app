@@ -261,7 +261,7 @@ flowchart TD
 
 ## 🛠️ API:
 
-Remember to add domain `https://ticketing.io/` leading each API.
+Remember to add domain `http://www.ticket-system.xyz/`, (or if you want to set up the project on your own local machine, `https://ticketing.io/`) leading each API.
 Except `POST /api/users/signin`, `POST /api/users/signout`, `POST /api/users/signup`, all other routes require user's cookie, which can be acquired from `POST /api/users/signin` or `POST /api/users/signup`.
 
 > Will be updated along the way.
