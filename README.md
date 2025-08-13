@@ -1,6 +1,6 @@
 # 🎟️ Ticket Booking App
 
-A microservices-based ticket booking platform built with Node.js, TypeScript, Docker, and Kubernetes. This project demonstrates a scalable, event-driven architecture that simulates real-world applications, showcasing modern DevOps practices and cloud-native design. Visit `http://www.ticket-system.xyz/` for a quick demonstration of the app.
+A microservices-based ticket booking platform built with Node.js, TypeScript, Docker, and Kubernetes. This project demonstrates a scalable, event-driven architecture that simulates real-world applications, showcasing modern DevOps practices and cloud-native design. Visit ~~`http://www.ticket-system.xyz/`~~ (apologies it's temporarily down, I will pay for it sometime later) for a quick demonstration of the app.
 
 ---
 
